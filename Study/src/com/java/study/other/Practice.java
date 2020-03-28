@@ -1,13 +1,19 @@
 
 package com.java.study.other;
 
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Practice {
 
 	public static void main(String[] args) {
 		// Programmer.StringContains();
 		// Programmer.PrimeNumberToHundred();
+		// Programmer.SotHashMapByValue();
+		Programmer.binaryConverter();
 	}
 
 }
@@ -47,6 +53,50 @@ class Programmer {
 				System.out.println("Prime Number = "+ i);
 			}
 		}
+	}
+	
+	// Hashmap Sorting by values 
+	public static void SotHashMapByValue() {
+		HashMap<String, Integer> h1 = new HashMap<String, Integer>();
+		
+		h1.put("vaibhav", 4);
+		h1.put("vikas", 1);
+		h1.put("pathak", 3);
+		h1.put("abc", 2);
+		h1.put("pqr", 5);
+		
+		// Logic 1 : with tree set
+		TreeSet<Integer> t1 = new TreeSet<Integer>();
+		h1.entrySet().stream().forEach(e->t1.add(e.getValue()));
+		System.out.println(t1);
+		
+		//Logic 2 : with values returns collection<Integer>
+		List<Integer> l1 = h1.values().stream()
+				.sorted((o1,o2)->o1>o2?1:-1)     // Reverse comparator
+				.collect(Collectors.toList());
+		System.out.println(l1);
+		
+	}
+	
+	public static void binaryConverter() {
+		StringBuilder s1 = new StringBuilder();
+		int number = 2;
+		
+		System.out.println("Number: "+ number);
+		int quotient = number/2;
+		int reminder = number%2;
+		
+		s1.append(reminder);
+		
+		while(quotient != 0) {
+			reminder = quotient % 2;
+			s1.append(reminder);
+			quotient = quotient / 2;
+		}
+		
+		s1.reverse();
+		System.out.println(s1);
+		
 	}
 	
 }
